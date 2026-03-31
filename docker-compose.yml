@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: negi-fastapi-app
+    ports:
+      - "8000:8000"
+    volumes:
+       - ./app/data:/app/app/data
+

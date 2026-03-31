@@ -1,0 +1,16 @@
+from fastapi import APIRouter
+
+from app.model_runtime import runtime
+from app.schemas import HealthResponse
+from app.settings import settings
+
+router = APIRouter(tags=["health"])
+
+@router.get("/health", response_model=HealthResponse)
+def health() -> HealthResponse:
+    return HealthResponse(
+        status="ok",
+        app=settings.app_name,
+        model_loaded=runtime.is_model_loaded,
+    )
+    
