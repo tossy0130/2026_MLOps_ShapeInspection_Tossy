@@ -6,6 +6,9 @@ from app.routers.health import router as health_router
 from app.routers.inspect import router as inspect_router
 from app.routers.model import router as model_router
 
+### 結果ルーター追加
+from app.routers.debug_ui import router as debug_ui_router
+
 from app.settings import settings
 
 app = FastAPI(title=settings.app_name, version="0.1.0")
@@ -13,6 +16,9 @@ app = FastAPI(title=settings.app_name, version="0.1.0")
 app.include_router(health_router)
 app.include_router(inspect_router)
 app.include_router(model_router)
+
+### 結果ルーター追加
+app.include_router(debug_ui_router)
 
 @app.get("/", response_class=HTMLResponse)
 def root() -> str:
